@@ -103,3 +103,17 @@ angular
 ```
 
 It's that simple, whilst also being incredibly awesome + powerful!
+
+## Attaching our interceptor
+
+Now that we've made our interceptor, we need to actually tell Angular to use it. We can use this using the `.config` method available to us on modules. We inject the `$httpProvider` service, and push it into the `interceptors` array that it offers.
+
+```js
+function Config($httpProvider) {
+	$httpProvider.interceptors.push('MyInterceptor');
+}
+
+angular
+	.module('app')
+	.config(Config);
+```
