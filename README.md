@@ -13,6 +13,8 @@ Now, using `$http` or `$resource` means we're going to end up doing a lot of HTT
 
 Eventually, we may need to manipulate all of the requests, or even take a wide-look at all the responses and handle any errors globally instead of on an individual case - we can do this with HTTP interceptors.
 
+We might also want to retry requests if they fail. We can do this with HTTP interceptors!
+
 HTTP interceptors allow us to define functionality that will happen before every request is made, or just after every request has come back from the server. This means we can append things to every request we make, or handle errors that may arise from the backend (it's better to do this in an interceptor and have application-wide error handling, rather than doing it for every possible request we make).
 
 HTTP interceptors are just simple services that we then push into an interceptors array in the `$httpProvider` service.
@@ -30,6 +32,8 @@ angular
 ```
 
 This looks familiar - it is! Now you might be wondering how we actually intercept things.
+
+There are certain functions we can attach to our interceptor service - Angular will look if they exist, and then run them if they do.
 
 ### Before a request
 
@@ -102,18 +106,6 @@ angular
 	.service('MyInterceptor', MyInterceptor);
 ```
 
+(NotificationService will be a custom service that we have made, alerting the user when we call `.showError`)
+
 It's that simple, whilst also being incredibly awesome + powerful!
-
-## Attaching our interceptor
-
-Now that we've made our interceptor, we need to actually tell Angular to use it. We can use this using the `.config` method available to us on modules. We inject the `$httpProvider` service, and push it into the `interceptors` array that it offers.
-
-```js
-function Config($httpProvider) {
-	$httpProvider.interceptors.push('MyInterceptor');
-}
-
-angular
-	.module('app')
-	.config(Config);
-```
