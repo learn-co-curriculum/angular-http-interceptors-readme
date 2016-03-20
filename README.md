@@ -28,7 +28,11 @@ function MyInterceptor() {
 
 angular
 	.module('app')
-	.service('MyInterceptor', MyInterceptor);
+	.service('MyInterceptor', MyInterceptor)
+	.config(function ($httpProvider) {
+		$httpProvider.interceptors.push('MyInterceptor');
+	});
+	// This last call pushes our new interceptor into the $httpProvider interceptor array
 ```
 
 If this looks familiar - it is! Now you might be wondering how we actually intercept things.
@@ -48,7 +52,10 @@ function MyInterceptor() {
 
 angular
 	.module('app')
-	.service('MyInterceptor', MyInterceptor);
+	.service('MyInterceptor', MyInterceptor)
+	.config(function ($httpProvider) {
+		$httpProvider.interceptors.push('MyInterceptor');
+	});
 ```
 
 We can now manipulate our request by editing the `config` variable passed through. For instance, if we want to add another header to our request, we just modify `config.headers`.
@@ -63,7 +70,10 @@ function MyInterceptor() {
 
 angular
 	.module('app')
-	.service('MyInterceptor', MyInterceptor);
+	.service('MyInterceptor', MyInterceptor)
+	.config(function ($httpProvider) {
+		$httpProvider.interceptors.push('MyInterceptor');
+	});
 ```
 
 This will append the `X-Requested-From` header to every single request going through `$http`!
@@ -84,7 +94,10 @@ function MyInterceptor() {
 
 angular
 	.module('app')
-	.service('MyInterceptor', MyInterceptor);
+	.service('MyInterceptor', MyInterceptor)
+	.config(function ($httpProvider) {
+		$httpProvider.interceptors.push('MyInterceptor');
+	});
 ```
 
 We can then check when the request was completed in our services!
@@ -103,7 +116,10 @@ function MyInterceptor(NotificationService) {
 
 angular
 	.module('app')
-	.service('MyInterceptor', MyInterceptor);
+	.service('MyInterceptor', MyInterceptor)
+	.config(function ($httpProvider) {
+		$httpProvider.interceptors.push('MyInterceptor');
+	});
 ```
 
 (NotificationService will be a custom service that we have made, alerting the user when we call `.showError`)
