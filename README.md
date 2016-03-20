@@ -31,7 +31,7 @@ angular
 	.service('MyInterceptor', MyInterceptor);
 ```
 
-This looks familiar - it is! Now you might be wondering how we actually intercept things.
+If this looks familiar - it is! Now you might be wondering how we actually intercept things.
 
 There are certain functions we can attach to our interceptor service - Angular will look if they exist, and then run them if they do.
 
