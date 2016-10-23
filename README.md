@@ -87,7 +87,7 @@ We might want to log what time the request came back:
 ```
 function MyInterceptor() {
 	this.response = function (config) {
-		config.config.responseTime = Date.now();
+		config.responseTime = Date.now();
 		return config;
 	};
 }
@@ -125,3 +125,5 @@ angular
 (NotificationService will be a custom service that we have made, alerting the user when we call `.showError`)
 
 It's that simple, whilst also being incredibly awesome + powerful!
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/angular-http-interceptors-readme'>HTTP Interceptors</a> on Learn.co and start learning to code for free.</p>
